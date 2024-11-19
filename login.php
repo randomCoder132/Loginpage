@@ -2,23 +2,43 @@
 // session start always take place at the beginning
 session_start();
 
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = ""; 
+$dbname = "user"; // database name
+
 // connection between Form and MySQL server
-$con = mysqli_connect("localhost", "root", "", "user");
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
-// username and password is received from login
-$finaluser = trim($_POST['username']);
-$finalpass = trim($_POST['password']);
-
-// compare between user input and database values
-$sql = "SELECT * FROM user_table where username = '$finaluser' AND password = '$finalpass'";
-
-//SQL result executed
-$result = mysql_query($con, $sql);
-
-// if number of rows is greater than 0 there is a username and password, match is found 
-// else, match is not
-if (mysqli_num_rows($result)>=1){
-	//username is stored to session and forwared to next page
-	$_SESSION["myuser"]=$finaluser;
-	header("Location:newpage.html");
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
+
+if (isset($_POST['username']) && isset($_POST['password'])) {
+
+	// username and password is received from login
+	$loginUsername = $_POST['username'];
+	$loginPassword = $_POST['password'];
+
+	// compare between user input and database values
+	$loginQuery = "SELECT * FROM user_table where username = '$loginUsername' AND password = '$loginPassword'";
+
+	//SQL result executed
+	$loginResult = mysqli_query($conn, $loginQuery);
+
+	// if number of rows is greater than 0 there is a username and password, match is found 
+	// else, match is not
+	if (mysqli_num_rows($loginResult) > 0){
+		//username is stored to session and forwared to next page
+		$_SESSION["myuser"]=$loginUsername;
+		header("Location:newpage.html");
+	} else {
+		echo "Invalid username or password";
+	}
+} else {
+	echo "No username or password entered.";
+}
+
+mysqli_close($conn);
+?>

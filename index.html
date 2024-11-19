@@ -8,7 +8,7 @@
     <meta http-equiv='pragma' content='no-cache'>
 
     <!-- ===== CSS ===== -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 
     <!-- ===== BOX ICONS ===== -->
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
@@ -17,14 +17,12 @@
 </head>
 <body>
     <div class="container">
-        <img src="potential__logo.jpg" alt="">
 
         <div class="shape1"></div>
         <div class="shape2"></div>
 
         <div class="form">
-
-            <form action="" class="form__content" id="login">
+            <form action="login.php" class="form__content" id="login" method="post">
                 <h1 class="form__title">Welcome</h1>
 
                 <div class="form__div form__div-one">
@@ -34,7 +32,7 @@
 
                     <div class="form__div-input">
                         <label for="" class="form__label">Username</label>
-                        <input type="text" class="form__input">
+                        <input type="text" class="form__input" name="username">
                     </div>
                 </div>
 
@@ -45,19 +43,18 @@
 
                     <div class="form__div-input">
                         <label for="" class="form__label">Password</label>
-                        <input type="password" class="form__input">
+                        <input type="password" class="form__input" name="password">
                     </div>
                 </div>
-                <a href="#" class="form__forgot" id="linkResetPW">Forgot Password?</a>
+                
 
                 <input type="submit" class="form__button" value="Login">
 
-                <a href="#" class="form__signup" id="linkSignup">Don't have an account? Sign up</a>
-
+                <a href="#" class="form__link" id="linkSignup">Don't have an account? Sign up</a>
 
             </form>
 
-            <form action="" class="form__content form--hidden" id="signup">
+            <form action="signup.php" class="form__content form--hidden" id="signup" method="post">
                 <h1 class="form__title">Sign Up</h1>
 
                 <div class="form__div form__div-one">
@@ -67,7 +64,7 @@
 
                     <div class="form__div-input">
                         <label for="" class="form__label">Username</label>
-                        <input type="text" class="form__input">
+                        <input type="text" class="form__input" name="username">
                     </div>
                 </div>
 
@@ -78,7 +75,7 @@
 
                     <div class="form__div-input">
                         <label for="" class="form__label">Email</label>
-                        <input type="email" class="form__input">
+                        <input type="email" class="form__input" name="email">
                     </div>
                 </div>
 
@@ -89,37 +86,18 @@
 
                     <div class="form__div-input">
                         <label for="" class="form__label">Password</label>
-                        <input type="text" class="form__input">
+                        <input type="text" class="form__input" name="password">
                     </div>
                 </div>
 
 
                 <input type="submit" class="form__button" value="Signup">
 
-                <a href="#" class="form__signup" id="linkLogin1">Already have an account? Log in</a>
+                <a href="#" class="form__link" id="linkLogin1">Already have an account? Log in</a>
 
 
             </form>
 
-            <form action="" class="form__content form--hidden" id="resetPW">
-                <h1 class="form__title">Reset Password</h1>
-
-                <div class="form__div">
-                    <div class="form__icon">
-                        <i class='bx bx-mail-send'></i>
-                    </div>
-
-                    <div class="form__div-input">
-                        <label for="" class="form__label">Email</label>
-                        <input type="email" class="form__input">
-                    </div>
-                </div>
-
-                <input type="submit" class="form__button" value="Send Password Reset Email">
-
-                <a href="#" class="form__signup" id="linkLogin2">Return to Login</a>
-
-            </form>
         </div>
 
     </div>

@@ -137,6 +137,7 @@ img {
     color: var(--text-color);
     transition: .3s;
 }
+
 /*=== Label focus ===*/
 .form__div.focus .form__label {
     top: -1.5rem;
@@ -163,22 +164,7 @@ img {
     transition: .3s;
 }
 
-.form__forgot {
-    display: block;
-    text-align: right;
-    margin-bottom: 2rem;
-    font-size: var(--normal-font-size);
-    color: var(--text-color);
-    font-weight: 500;
-    transition: .5s;
-}
-
-.form__forgot:hover {
-    color: var(--first-color);
-    transition: .5s;
-}
-
-.form__signup {
+.form__link {
     display: block;
     text-align: center;
     margin-bottom: 2rem;
@@ -188,7 +174,7 @@ img {
     transition: .5s;
 }
 
-.form__signup:hover {
+.form__link:hover {
     color: var(--first-color);
     transition: .5s;
 }
