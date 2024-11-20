@@ -1,6 +1,6 @@
 
 const whatTosay = ["This is the login page","Selected Password Input","Selected",""];
-const keyWords  = ["password","username","email","sign up", "login","exit"];
+const keyWords  = ["password","username","email","sign up", "login","exit","submit"];
 var speaking = false;
 
 window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -117,6 +117,14 @@ function speak(text) {
                     loginState = loginStates.login;
                     loginForm.classList.remove("form--hidden");
                     signupForm.classList.add("form--hidden");
+                }
+                else if(text.includes(keywords[6])){
+                    if(loginState == loginStates.login){
+                        document.querySelector("#submitLogin").click();
+                    }
+                    else{
+                        document.querySelector("#submitSignup").click()
+                    }
                 }
                 break;
             case pageStates.email:
