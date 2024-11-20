@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,12 +9,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="src/css/general_layout.css">
-    <link rel="stylesheet" href="src/css/navbar.css">
-    <!-- Main.js -->
-    <script src="/src/js/index.js"></script>
+    <link rel="stylesheet" href="../src/css/general_layout.css">
+    <link rel="stylesheet" href="../src/css/navbar.css">
     <!-- Page title -->
-    <title>Main Menu - Bat Type</title>
+    <title>Accounts Info - Bat Type</title>
 </head>
 <body>
     <!-- Navbar -->
@@ -46,16 +44,17 @@
     </nav>
     <!-- Title -->
     <div class="container">
-        <h1>Bat Type</h1>
-        <h3>Continue by selecting any one of the four following areas of focus.</h3>
-    </div>
-
-    <!-- Buttons -->
-    <div class="button_container">
-        <button class="main_menu_btns" onclick="redirectWebpage('#tutorial')">Tutorial</button>
-        <button class="main_menu_btns" onclick="window.location = './html/lessons.html'">Lessons</button>
-        <button class="main_menu_btns" onclick="redirectWebpage('#practice')">Practice</button>
-        <button class="main_menu_btns" onclick="redirectWebpage('#speed-typing')">Speed Typing</button>
+        <h1>Account Information</h1>
+        <h3> Username:
+        <?php include 'login.php';
+        echo $_SESSION['myuser'];
+        ?>
+        </h3>
+        <h3> Password:
+        <?php 
+        echo $_SESSION['mypassword'];
+        ?>
+        </h3>
     </div>
 
     <!-- Footer -->

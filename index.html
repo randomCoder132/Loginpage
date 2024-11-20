@@ -22,7 +22,7 @@
         <div class="shape2"></div>
 
         <div class="form">
-            <form action="login.php" class="form__content" id="login" method="post">
+            <form action="./php/login.php" class="form__content" id="login" method="post">
                 <h1 class="form__title">Welcome</h1>
 
                 <div class="form__div form__div-one">
@@ -46,15 +46,15 @@
                         <input type="password" class="form__input" name="password">
                     </div>
                 </div>
-                
 
                 <input type="submit" class="form__button" value="Login">
 
-                <a href="#" class="form__link" id="linkSignup">Don't have an account? Sign up</a>
+                <a href="#signup" class="form__link" id="linkSignup">Don't have an account? Sign up</a>
 
             </form>
 
-            <form action="signup.php" class="form__content form--hidden" id="signup" method="post">
+            <form action="./php/signup.php" class="form__content form--hidden" id="signup" method="post">
+
                 <h1 class="form__title">Sign Up</h1>
 
                 <div class="form__div form__div-one">
@@ -90,11 +90,9 @@
                     </div>
                 </div>
 
-
                 <input type="submit" class="form__button" value="Signup">
 
-                <a href="#" class="form__link" id="linkLogin1">Already have an account? Log in</a>
-
+                <a href="#login" class="form__link" id="linkLogin">Already have an account? Log in</a>
 
             </form>
 

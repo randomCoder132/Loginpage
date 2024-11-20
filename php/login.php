@@ -1,4 +1,5 @@
 <?php
+
 // session start always take place at the beginning
 session_start();
 
@@ -16,7 +17,6 @@ if (!$conn) {
 }
 
 if (isset($_POST['username']) && isset($_POST['password'])) {
-
 	// username and password is received from login
 	$loginUsername = $_POST['username'];
 	$loginPassword = $_POST['password'];
@@ -32,13 +32,12 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 	if (mysqli_num_rows($loginResult) > 0){
 		//username is stored to session and forwared to next page
 		$_SESSION["myuser"]=$loginUsername;
-		header("Location:newpage.html");
+		$_SESSION["mypassword"]=$loginPassword;
+		header("Location:../newpage.html");
 	} else {
-		echo "Invalid username or password";
+		echo "<script>alert('Incorrect username or password')</script>"; 
 	}
-} else {
-	echo "No username or password entered.";
-}
+} 
 
 mysqli_close($conn);
 ?>

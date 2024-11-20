@@ -1,6 +1,4 @@
 <?php
-// session start always take place at the beginning
-session_start();
 
 // Database connection
 $servername = "localhost";
@@ -30,23 +28,23 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['emai
     $checkEmailResult = mysqli_query($conn, $checkEmail);
 
     if (mysqli_num_rows($checkUserResult) > 0) {
-        echo "Username already exists.";
+        echo "<script>alert('Username already exists.')</script>";
     } else if (mysqli_num_rows($checkEmailResult) > 0) {
-        echo "An account with this email already exists.";
+        echo "<script>alert('An account with this email already exists.')</script>";
     }
     else {
         // Insert the new user into the database
-        $insertQuery = "INSERT INTO user_table (username, password, email) VALUES ('$finalUser', '$finalPass', 'finalEmail')";
+        $insertQuery = "INSERT INTO user_table (username, password, email) VALUES ('$finalUser', '$finalPass', '$finalEmail')";
         $insertResult = mysqli_query($conn, $insertQuery);
 
         if ($insertResult) {
-            echo "Registration successful!";
+            echo "<script>alert('Registration successful!')</script>";
         } else {
-            echo "Error: " . $insertQuery . "<br>" . mysqli_error($conn);
+            echo "<p> Error: " . $insertQuery . "<br>" . mysqli_error($conn) . "</p>";
         }
     }
 } else {
-    echo "No username or password or email entered.";
+    echo "<script>alert('Username, password or email isn't entered.')</script>";
 }
 
 mysqli_close($conn);
