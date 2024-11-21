@@ -1,5 +1,5 @@
 
-const whatTosay = ["This is the login page","Selected Password Input","Selected",""];
+const whatTosay = ["This is the login page","Password Selected","Username Selected","Email Selected","returning", "Login Page", "Sign Up Page","Enter"];
 const keyWords  = ["password","username","email","sign up", "login","exit","submit"];
 var speaking = false;
 
@@ -11,7 +11,6 @@ const synth = window.speechSynthesis;
 const recognition = new window.SpeechRecognition();
 const loginForm = document.querySelector("#login");
 const signupForm = document.querySelector("#signup");
-const acButton = document.getElementById("acButton");
 
 const loginStates = {
     login: login,
@@ -31,7 +30,7 @@ this.loginState = loginStates.login;
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    speak(0);  
+    speak(whatToSay[0]);  
     document.querySelector("#linkSignup").addEventListener("click", () => {
         loginForm.classList.add("form--hidden");
         signupForm.classList.remove("form--hidden");
@@ -75,13 +74,22 @@ function speak(text) {
     speechSynthesis.speak(utterance);
   }
 
+  /* "This is the login page" 0
+  "Password Selected", 1
+  "Username Selected", 2
+  "Email Selected", 3
+  "returning", 4
+  "Login Page", 5
+  "Sign Up Page 6 
+  "Enter" 7
+  */ 
   recognition.interimResults = true;                                       
   recognition.addEventListener('result', (e) => {
     const text = Array.from(e.results).map(result => result[0]).map(result => result.transcript).join('');
     if (e.results[0].isFinal){
         console.log(pageState);
         if(text == keyWords[5]){
-            speak(1);
+            speak(whatToSay[4]);
             this.pageState = pageStates.none;
             document.activeElement.blur();
         }
@@ -89,36 +97,37 @@ function speak(text) {
         switch (pageState) {  
             case pageStates.none:
                 if(text.includes(keyWords[0])){
-                    speak(whatTosay[0]);
+                    speak(whatTosay[1]);
                     this.loginState[1].focus();
                     this.pageState = pageStates.password;
                     
                 }
                 else if(text.includes(keyWords[1])){
-                    speak(whatTosay[0]);
+                    speak(whatTosay[2]);
                     this.loginState[0].focus();
                     this.pageState = pageStates.username;
                 }
                 else if(text.includes(keyWords[2])&& loginState == loginStates.signup){
-                    speak(whatTosay[0]);
+                    speak(whatTosay[3]);
                     signup[2].focus();
                     this.pageState = pageStates.email;
                 }
                 else if(text.includes(keyWords[3])){
-                    speak(whatTosay[0]);
+                    speak(whatTosay[6]);
                     this.pageState = pageStates.none;
                     loginState = loginStates.signup;
                     loginForm.classList.add("form--hidden");
                     signupForm.classList.remove("form--hidden");
                 }
                 else if(text.includes(keyWords[4])){
-                    speak(whatTosay[0]);
+                    speak(whatTosay[5]);
                     this.pageState = pageStates.none;
                     loginState = loginStates.login;
                     loginForm.classList.remove("form--hidden");
                     signupForm.classList.add("form--hidden");
                 }
                 else if(text.includes(keywords[6])){
+                    speak(whatTosay[7]);
                     if(loginState == loginStates.login){
                         document.querySelector("#submitLogin").click();
                     }
