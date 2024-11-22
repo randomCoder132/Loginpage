@@ -5,7 +5,7 @@ var speaking = false;
 
 window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-const signUp = [document.querySelector("#signUpUsername"),document.querySelector("#signUpPassword"),document.querySelector("#signUpEmail")];
+const signUp = [document.querySelector("#signUpUsername"),document.querySelector("#signUpPassword")];
 const login = [document.querySelector("#loginUsername"),document.querySelector("#loginPassword")];
 const synth = window.speechSynthesis;
 const recognition = new window.SpeechRecognition();
@@ -26,11 +26,8 @@ const pageStates = {
 this.pageState = pageStates.none;
 this.loginState = loginStates.login;
 
-
-
-
 document.addEventListener("DOMContentLoaded", () => {
-    speak(whatToSay[0]);  
+    speak(whatTosay[0]);  
     document.querySelector("#linkSignup").addEventListener("click", () => {
         loginForm.classList.add("form--hidden");
         signupForm.classList.remove("form--hidden");
@@ -87,9 +84,9 @@ function speak(text) {
   recognition.addEventListener('result', (e) => {
     const text = Array.from(e.results).map(result => result[0]).map(result => result.transcript).join('');
     if (e.results[0].isFinal){
-        console.log(pageState);
         if(text == keyWords[5]){
-            speak(whatToSay[4]);
+            console.log("in here");
+            speak(whatTosay[4]);
             this.pageState = pageStates.none;
             document.activeElement.blur();
         }
@@ -109,7 +106,7 @@ function speak(text) {
                 }
                 else if(text.includes(keyWords[2])&& loginState == loginStates.signup){
                     speak(whatTosay[3]);
-                    signup[2].focus();
+                    document.querySelector("#signUpEmail").focus();
                     this.pageState = pageStates.email;
                 }
                 else if(text.includes(keyWords[3])){
@@ -126,7 +123,7 @@ function speak(text) {
                     loginForm.classList.remove("form--hidden");
                     signupForm.classList.add("form--hidden");
                 }
-                else if(text.includes(keywords[6])){
+                else if(text.includes(keyWords[6])){
                     speak(whatTosay[7]);
                     if(loginState == loginStates.login){
                         document.querySelector("#submitLogin").click();
@@ -138,7 +135,9 @@ function speak(text) {
                 break;
             case pageStates.email:
                     console.log(signup[2]);
-                    signup[1].value = text;
+                    var bufferEmail = text.replace(/\s+/g, '');
+                    bufferEmail = bufferEmail.replace('at','@')
+                    signup[1].value = bufferEmail;
                     speak("Email set as " + text);
                 break;
             case pageStates.username:
